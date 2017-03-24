@@ -301,7 +301,7 @@ var InitializeGame = (function () {
     function InitializeGame() {
         this.generatePuzzle = new GeneratePuzzle();
         this.shufflePuzzlePieces = new ShufflePuzzlePieces();
-        this.removeRandomPuzzlePiece = new RemoveRandomPuzzlePiece;
+        this.setBackgroundOfLinePiece = new SetBackgroundOfLinePiece();
         this.movePiecesAlgo = new MovePiecesAlgo();
     }
     InitializeGame.prototype.init = function () {
@@ -312,7 +312,7 @@ var InitializeGame = (function () {
             generatePuzzle.generatePuzzle();
             _this.shufflePuzzlePieces.shufflePuzzlePieces();
             _this.shufflePuzzlePieces.makeRectangular();
-            _this.removeRandomPuzzlePiece.removeRandomPuzzlePiece();
+            _this.setBackgroundOfLinePiece.SetBackgroundOfLinePiece();
             _this.movePiecesAlgo.piecesMoves();
         });
     };
