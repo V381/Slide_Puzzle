@@ -1,0 +1,11 @@
+@import 'partials/_reset';
+@import 'partials/_header';
+@import 'partials/_puzzle';
+
+@include meyer-reset();
+
+
+.container{
+    max-width: 960px;
+    margin : 0 auto;
+}

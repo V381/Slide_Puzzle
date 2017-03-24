@@ -1,0 +1,70 @@
+@import '../variables/_variables';
+
+
+.puzzle{
+    margin-top: 50px;
+    text-align: center;
+    transition : 0.5s ease-in-out;
+    div{
+        padding : 40px;
+        height: 60px;
+        width: 60px;
+        font-size: 2em;
+        display: inline-block;
+        background-color : $defaultbg;
+        color: white;
+        border: 2px solid red;
+        box-shadow : 10px 10px 10px $defaultbg;
+        transition : 0.5s ease-in-out;
+        &:hover{
+            cursor: pointer;
+            transition : 0.5s ease-in-out;
+            background-color: lighten($defaultbg, 10%);
+        }
+        p{
+            position:relative;
+            top: 5px;
+        }
+    }
+}
+
+.bg{
+    background-color: #333333 !important;
+}
+
+body{
+    background-color: lighten($defaultbg, 10%);
+}
+
+
+.stats{
+    text-align: center;
+    h1{
+        text-align: center;
+        padding: 10px;
+        font-size: 2em;
+        color: white;
+        margin-top: 50px;
+    }
+    button{
+        width: 50%;
+        padding : 15px;
+        background-color: $defaultbg;
+        font-size: 2em;
+        color: white;
+        border : 2px solid red;
+        transition : 0.5s ease-in-out;
+        &:hover{
+            cursor: pointer;
+            transition : 0.5s ease-in-out;
+            background-color: lighten($defaultbg, 5%);
+        }
+    }
+}
+
+.stats__victory{
+    text-align: center;
+    color: green;
+    font-size: 3em;
+    margin-top: 10px;
+}
