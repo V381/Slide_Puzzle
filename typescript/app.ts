@@ -313,7 +313,7 @@ class InitializeGame{
 
     generatePuzzle = new GeneratePuzzle();
     shufflePuzzlePieces = new ShufflePuzzlePieces();
-    removeRandomPuzzlePiece = new RemoveRandomPuzzlePiece
+    setBackgroundOfLinePiece = new SetBackgroundOfLinePiece();
     movePiecesAlgo = new MovePiecesAlgo();
 
     init():void{
@@ -323,7 +323,7 @@ class InitializeGame{
             generatePuzzle.generatePuzzle();
             this.shufflePuzzlePieces.shufflePuzzlePieces();
             this.shufflePuzzlePieces.makeRectangular();
-            this.removeRandomPuzzlePiece.removeRandomPuzzlePiece();
+            this.setBackgroundOfLinePiece.SetBackgroundOfLinePiece();
             this.movePiecesAlgo.piecesMoves();
         });
 
