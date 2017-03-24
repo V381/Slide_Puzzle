@@ -1,10 +1,11 @@
 var GeneratePuzzle = (function () {
     function GeneratePuzzle() {
         this.getPuzzleParent = document.querySelector('.puzzle');
+        this.getPuzzlePieces = document.querySelector('.puzzle').children;
     }
     // Generate puzzle.
     GeneratePuzzle.prototype.generatePuzzle = function () {
-        for (var i = 1; i <= 16; i++) {
+        for (var i = 1; i <= 15; i++) {
             var div = document.createElement('div');
             var p = document.createElement('p');
             p.appendChild(document.createTextNode(String(i)));
@@ -13,27 +14,30 @@ var GeneratePuzzle = (function () {
             div.setAttribute('data-attr', String(i));
             this.getPuzzleParent.appendChild(div);
         }
+        var line = document.createElement('div');
+        var lineHTML = document.createElement('p');
+        line.setAttribute('id', String(16));
+        line.setAttribute('data-attr', String(16));
+        lineHTML.innerHTML = '-';
+        line.appendChild(lineHTML);
+        this.getPuzzleParent.appendChild(line);
     };
     return GeneratePuzzle;
 }());
-var RemoveRandomPuzzlePiece = (function () {
-    function RemoveRandomPuzzlePiece() {
+var SetBackgroundOfLinePiece = (function () {
+    function SetBackgroundOfLinePiece() {
         this.getPuzzlePieces = document.querySelector('.puzzle').children;
     }
-    RemoveRandomPuzzlePiece.prototype.removeRandomPuzzlePiece = function () {
-        var randomPuzzlePiece = this.getPuzzlePieces[Math.floor(Math.random() * this.getPuzzlePieces.length)];
-        if (randomPuzzlePiece.tagName === 'DIV') {
-            randomPuzzlePiece.children[0].style.visibility = 'hidden';
-            randomPuzzlePiece.style.backgroundColor = '#333333';
-            randomPuzzlePiece.setAttribute('data-attr', true);
-            randomPuzzlePiece.innerHTML = '-';
-        }
-        else {
-            // If the tagName is not div, run again function until it is.
-            this.removeRandomPuzzlePiece();
+    SetBackgroundOfLinePiece.prototype.SetBackgroundOfLinePiece = function () {
+        for (var i = 0; i < this.getPuzzlePieces.length; i++) {
+            if (this.getPuzzlePieces[i].tagName === 'DIV') {
+                if (this.getPuzzlePieces[i].children[0].innerHTML === '-') {
+                    this.getPuzzlePieces[i].style.backgroundColor = '#333333';
+                }
+            }
         }
     };
-    return RemoveRandomPuzzlePiece;
+    return SetBackgroundOfLinePiece;
 }());
 var ShufflePuzzlePieces = (function () {
     function ShufflePuzzlePieces() {
@@ -102,13 +106,13 @@ var MovePiecesAlgo = (function () {
     };
     MovePiecesAlgo.prototype.removeBrEl = function () {
         this.createJaggedArr();
-        for (var i = 0; i < this.jArr.length; i++) {
-            for (var j = 0; j < this.jArr[i].length; j++) {
-                if (this.jArr[i][j].tagName === 'BR') {
-                    this.jArr[i].splice(j, 1);
-                }
-            }
-        }
+        // for(let i = 0; i < this.jArr.length; i++){
+        //     for(let j = 0; j < this.jArr[i].length; j++){
+        //         if(this.jArr[i][j].tagName === 'BR'){
+        //             this.jArr[i].splice(j, 1);
+        //         }
+        //     }
+        // }
     };
     MovePiecesAlgo.prototype.piecesMoves = function () {
         var pieces = this.getPuzzlePieces;
@@ -319,8 +323,8 @@ generatePuzzle.generatePuzzle();
 var shufflePuzzlePieces = new ShufflePuzzlePieces();
 shufflePuzzlePieces.shufflePuzzlePieces();
 shufflePuzzlePieces.makeRectangular();
-var removeRandomPuzzlePiece = new RemoveRandomPuzzlePiece();
-removeRandomPuzzlePiece.removeRandomPuzzlePiece();
+var setBackgroundOfLinePiece = new SetBackgroundOfLinePiece();
+setBackgroundOfLinePiece.SetBackgroundOfLinePiece();
 var movePiecesAlgo = new MovePiecesAlgo();
 movePiecesAlgo.piecesMoves();
 var initializeGame = new InitializeGame();
