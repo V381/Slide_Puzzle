@@ -1,0 +1,13 @@
+{
+  "name": "League_Of_Legends_Memory_Game",
+  "version": "1.0.0",
+  "dependencies": {
+    "browser-sync": "^2.18.8",
+    "express": "^4.15.2",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-sass": "^3.1.0",
+    "systemjs": "^0.19.41"
+  }
+}
