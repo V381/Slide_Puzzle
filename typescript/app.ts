@@ -2,11 +2,12 @@
 
 class GeneratePuzzle{
     getPuzzleParent = document.querySelector('.puzzle');
+    getPuzzlePieces = document.querySelector('.puzzle').children;
 
     // Generate puzzle.
 
     generatePuzzle():void{
-        for(let i = 1; i <= 16; i++){
+        for(let i = 1; i <= 15; i++){
             let div = document.createElement('div');
             let p = document.createElement('p');
             p.appendChild(document.createTextNode(String(i)));
@@ -15,24 +16,26 @@ class GeneratePuzzle{
             div.setAttribute('data-attr', String(i));
             this.getPuzzleParent.appendChild(div);
         }
+        let line = document.createElement('div');
+        let lineHTML = document.createElement('p');
+        line.setAttribute('id', String(16));
+        line.setAttribute('data-attr', String(16));
+        lineHTML.innerHTML = '-';
+        line.appendChild(lineHTML);
+        this.getPuzzleParent.appendChild(line);
     }
-
-
 
 }
 
-class RemoveRandomPuzzlePiece{
+class SetBackgroundOfLinePiece{
     getPuzzlePieces = document.querySelector('.puzzle').children;
-    removeRandomPuzzlePiece():void{
-        let randomPuzzlePiece = this.getPuzzlePieces[Math.floor(Math.random() * this.getPuzzlePieces.length)];
-        if(randomPuzzlePiece.tagName === 'DIV'){
-            randomPuzzlePiece.children[0].style.visibility = 'hidden';   
-            randomPuzzlePiece.style.backgroundColor = '#333333';
-            randomPuzzlePiece.setAttribute('data-attr', true);
-            randomPuzzlePiece.innerHTML = '-';
-        }else{
-            // If the tagName is not div, run again function until it is.
-            this.removeRandomPuzzlePiece();
+    SetBackgroundOfLinePiece():void{
+        for(let i = 0; i < this.getPuzzlePieces.length; i++){
+            if(this.getPuzzlePieces[i].tagName === 'DIV'){
+                if(this.getPuzzlePieces[i].children[0].innerHTML === '-'){
+                    this.getPuzzlePieces[i].style.backgroundColor = '#333333';
+                }
+            }
         }
     }
 }
@@ -121,13 +124,13 @@ class MovePiecesAlgo{
 
     removeBrEl(){
         this.createJaggedArr();
-        for(let i = 0; i < this.jArr.length; i++){
-            for(let j = 0; j < this.jArr[i].length; j++){
-                if(this.jArr[i][j].tagName === 'BR'){
-                    this.jArr[i].splice(j, 1);
-                }
-            }
-        }
+        // for(let i = 0; i < this.jArr.length; i++){
+        //     for(let j = 0; j < this.jArr[i].length; j++){
+        //         if(this.jArr[i][j].tagName === 'BR'){
+        //             this.jArr[i].splice(j, 1);
+        //         }
+        //     }
+        // }
     }
 
     piecesMoves():void{
@@ -337,8 +340,8 @@ let shufflePuzzlePieces = new ShufflePuzzlePieces();
 shufflePuzzlePieces.shufflePuzzlePieces();
 shufflePuzzlePieces.makeRectangular();
 
-let removeRandomPuzzlePiece = new RemoveRandomPuzzlePiece();
-removeRandomPuzzlePiece.removeRandomPuzzlePiece();
+let setBackgroundOfLinePiece = new SetBackgroundOfLinePiece();
+setBackgroundOfLinePiece.SetBackgroundOfLinePiece();
 
 let movePiecesAlgo = new MovePiecesAlgo();
 movePiecesAlgo.piecesMoves();
